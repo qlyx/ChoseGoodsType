@@ -4,7 +4,7 @@
 //  MeiXiangDao_iOS
 //
 //  Created by 澜海利奥 on 2017/9/26.
-//  Copyright © 2017年 新媒科技. All rights reserved.
+//  Copyright © 2017年 江萧. All rights reserved.
 //
 
 #import "ChoseGoodsTypeAlert.h"
@@ -58,7 +58,7 @@
     }
     return self;
 }
-
+#pragma mark - methods
 -(void)hideView
 {
     [self tap];
@@ -90,6 +90,7 @@
     _model = model;
     [goodsInfo initData:model];
     [_dataSource removeAllObjects];
+    //传入数据源创建多个属性
     [_dataSource addObjectsFromArray:model.itemsList];
     //此方法必须在_dataSource赋值后方可调用
     [self reloadGoodsInfo];

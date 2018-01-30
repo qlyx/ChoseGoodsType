@@ -3,7 +3,7 @@
 //  MeiXiangDao_iOS
 //
 //  Created by 澜海利奥 on 2017/9/26.
-//  Copyright © 2017年 新媒科技. All rights reserved.
+//  Copyright © 2017年 江萧. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
@@ -18,5 +18,5 @@
 -(void)hideView;
 -(void)showView;
 -(void)initData:(GoodsModel *)model;
--(instancetype)initWithFrame:(CGRect)frame andHeight:(float)height;
+-(instancetype)initWithFrame:(CGRect)frame andHeight:(float)height;//height 白色弹框高度，自己想设多高设多高
 @end

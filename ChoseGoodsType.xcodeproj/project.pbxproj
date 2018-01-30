@@ -220,12 +220,12 @@
 		7B87311D201F00EA008979E5 /* views */ = {
 			isa = PBXGroup;
 			children = (
-				7B8731C2201F1A48008979E5 /* TypeView.h */,
-				7B8731C3201F1A48008979E5 /* TypeView.m */,
-				7B87311E201F00EA008979E5 /* ChoosTypeTableViewCell.h */,
-				7B87311F201F00EA008979E5 /* ChoosTypeTableViewCell.m */,
 				7B873120201F00EA008979E5 /* ChoseGoodsTypeAlert.h */,
 				7B873121201F00EA008979E5 /* ChoseGoodsTypeAlert.m */,
+				7B87311E201F00EA008979E5 /* ChoosTypeTableViewCell.h */,
+				7B87311F201F00EA008979E5 /* ChoosTypeTableViewCell.m */,
+				7B8731C2201F1A48008979E5 /* TypeView.h */,
+				7B8731C3201F1A48008979E5 /* TypeView.m */,
 				7B873122201F00EA008979E5 /* CountView.h */,
 				7B873123201F00EA008979E5 /* CountView.m */,
 				7B2D0E322020243C00C4C26D /* GoodsInfoView.h */,
