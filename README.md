@@ -1,5 +1,5 @@
 # ChoseGoodsType
-![image](https://github.com/qlyx/ChoseGoodsType/2018-01-30\ 14_34_42.gif)
+![image](https://github.com/qlyx/ChoseGoodsType/chosetype.gif)
 ## 下面代码创建即可
     ChoseGoodsTypeAlert *_alert = [[ChoseGoodsTypeAlert alloc] initWithFrame:CGRectMake(0, 0, kWidth, kHeight) andHeight:kSize (450)];
     _alert.alpha = 0;
