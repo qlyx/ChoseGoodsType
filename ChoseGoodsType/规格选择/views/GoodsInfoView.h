@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+@class SizeAttributeModel;
 @class GoodsModel;
 @interface GoodsInfoView : UIView
 @property(nonatomic, strong)UIButton *closeButton;
-
+@property(nonatomic, strong)UILabel *promatLabel;
 @property (nonatomic, strong)GoodsModel *model;
 -(void)initData:(GoodsModel *)model;
--(void)resetDataWithStock:(NSString *)stock andPrice:(NSString *)price originalPrice:(NSString *)originalPrice;
+-(void)resetData:(SizeAttributeModel *)sizeModel;
 @end

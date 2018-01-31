@@ -8,7 +8,7 @@
 //
 
 #import "JXUIKit.h"
-
+#import "SVProgressHUD.h"
 @implementation JXUIKit
 +(UIView *)ViewcornerRadius:(float)radius andColor:(UIColor *)color andWidth:(float)width :(UIView *)view
 {
@@ -295,6 +295,17 @@
     [collectionview registerClass:[cellClass class] forCellWithReuseIdentifier:identifier];
     return collectionview;
 }
-
-
++(void)showWithString:(NSString *)string
+{
+    [SVProgressHUD showWithString:string];
+}
++(void)showErrorWithStatus:(NSString *)string
+{
+    
+    [SVProgressHUD showErrorWithStatus:string];
+}
++(void)showSuccessWithStatus:(NSString *)string
+{
+    [SVProgressHUD showSuccessWithStatus:string];
+}
 @end

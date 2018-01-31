@@ -17,6 +17,6 @@
 @property(nonatomic, copy)NSString *stock;//库存
 
 @property(nonatomic, copy)NSString *count;//数量
-
+@property(nonatomic, copy)NSString *imageId;//可能规格不同商品图片也不同
 
 @end

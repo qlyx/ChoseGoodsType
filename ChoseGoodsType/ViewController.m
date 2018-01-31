@@ -23,7 +23,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     model = [[GoodsModel alloc] init];
-    model.imageId = @"1";
+    model.imageId = @"1.jpg";
     model.goodsNo = @"商品名";
     model.title = @"商品标题";
     model.totalStock = @"100";
@@ -60,6 +60,7 @@
         type.stock = [NSString stringWithFormat:@"%d",arc4random()%20];
         type.goodsNo = model.goodsNo;
         type.value = valueArr[i];
+        type.imageId =[NSString stringWithFormat:@"%d.jpg",arc4random()%4];
         [model.sizeAttribute addObject:type];
     }
 }
@@ -72,7 +73,7 @@
    
     _alert.selectSize = ^(SizeAttributeModel *sizeModel) {
         //sizeModel 选择的属性模型
-        [SVProgressHUD showWithString:[NSString stringWithFormat:@"选择了：%@",sizeModel.value]];
+        [JXUIKit showSuccessWithStatus:[NSString stringWithFormat:@"选择了：%@",sizeModel.value]];
     };
     [_alert initData:model];
     [_alert showView];

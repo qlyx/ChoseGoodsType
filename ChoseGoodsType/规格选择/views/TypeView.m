@@ -34,6 +34,7 @@
             NSDictionary *dic = [NSDictionary dictionaryWithObject:[UIFont boldSystemFontOfSize:14] forKey:NSFontAttributeName];
             CGSize size = [arr[i] sizeWithAttributes:dic];
             //NSLog(@"%f",size.height);
+            //20是左右边距各10，size.width+30是按钮宽度，间隔为10，通过计算x的位置判断是否换行显示按钮
             if ( upX > (self.frame.size.width-20 -size.width-40)) {
                 
                 isLineReturn = YES;

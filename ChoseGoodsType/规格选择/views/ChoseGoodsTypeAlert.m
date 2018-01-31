@@ -38,6 +38,7 @@
         bgView.backgroundColor = [UIColor whiteColor];
         bgView.userInteractionEnabled = YES;
         [self addSubview:bgView];
+        //手势是可以点击空白地方让键盘下去或者弹窗消失的
         UITapGestureRecognizer *tap1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap)];
         tap1.delegate = self;
         [bgView addGestureRecognizer:tap1];
@@ -75,18 +76,15 @@
 //
 -(void)showView
 {
-    
     self.alpha = 1;
     [UIView animateWithDuration:0.25 animations:^
      {
-         
          bgView.centerY = bgView.centerY-CGRectGetHeight(bgView.frame);
          
      } completion:^(BOOL fin){}];
 }
 -(void)initData:(GoodsModel *)model
 {
-    
     _model = model;
     [goodsInfo initData:model];
     [_dataSource removeAllObjects];
@@ -102,8 +100,7 @@
     if ([NSStringFromClass([gestureRecognizer class]) isEqualToString:@"UITapGestureRecognizer"]) {
         // 输出点击的view的类名
         NSLog(@"ismain:   %@", NSStringFromClass([touch.view class]));
-        //判断当前点击手势是什么情况下发生的
-        
+        //判断当前点击手势是什么情况下发生的-编辑状态就失去焦点
         if (countView.countTextField.isFirstResponder) {
             return YES;
         }else
@@ -114,6 +111,12 @@
 }
 -(void)reloadGoodsInfo
 {
+    for (GoodsTypeModel *model in _dataSource) {
+        if (model.selectIndex<0) {
+            goodsInfo.promatLabel.text =[NSString stringWithFormat:@"请选择%@",model.typeName];
+            break;
+        }
+    }
     NSString *str = [self getSizeStr];
     NSLog(@"用户选择的属性是：%@",str);
     sizeModel = nil;
@@ -124,25 +127,26 @@
             if ([countView.countTextField.text intValue]>[sizeModel.stock intValue]) {
                 countView.countTextField.text = [NSString stringWithFormat:@"%d",[sizeModel.stock intValue]];
             }
-            [goodsInfo resetDataWithStock:model.stock andPrice:model.price originalPrice:model.originalPrice];
+            goodsInfo.promatLabel.text = [NSString stringWithFormat:@"已选%@",model.value];
+            [goodsInfo resetData:model];
             return;
         }
     }
     //没找到匹配的，显示默认数据
-    [goodsInfo resetDataWithStock:_model.totalStock andPrice:_model.price.minPrice originalPrice:_model.price.minOriginalPrice];
+    [goodsInfo initData:_model];
 }
 //点击确定
 -(void)sure
 {
     for (GoodsTypeModel *model in _dataSource) {
         if (model.selectIndex<0) {
-            [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"请选择%@",model.typeName]];
+            [JXUIKit showErrorWithStatus:[NSString stringWithFormat:@"请选择%@",model.typeName]];
             return;
         }
     }
     if (_dataSource.count == 0) {
         //该商品无规格
-        [SVProgressHUD showErrorWithStatus:@"该商品无规格"];
+        [JXUIKit showErrorWithStatus:@"该商品无规格"];
         [self hideView];
         return;
     }
@@ -155,7 +159,7 @@
         [self hideView];
     }else
     {
-        [SVProgressHUD showErrorWithStatus:@"该规格商品暂无库存无法加入购物车"];
+        [JXUIKit showErrorWithStatus:@"该规格商品暂无库存无法加入购物车"];
     }
     
 }
@@ -211,13 +215,13 @@
     int count =[countView.countTextField.text intValue];
     if (sizeModel) {
         if (count >[sizeModel.stock intValue]) {
-            [SVProgressHUD showWithString:@"数量超出库存"];
+            [JXUIKit showWithString:@"数量超出库存"];
             countView.countTextField.text = [NSString stringWithFormat:@"%d",[sizeModel.stock intValue]];
         }
     }else
     {
         if (count > [_model.totalStock intValue]) {
-            [SVProgressHUD showWithString:@"数量超出库存"];
+            [JXUIKit showWithString:@"数量超出库存"];
             countView.countTextField.text = [NSString stringWithFormat:@"%d",[_model.totalStock intValue]];
             
         }
@@ -257,7 +261,7 @@
 -(UITableView *)tableview
 {
     if (!_tableview) {
-        _tableview = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, kWidth, kHeight-kTabbarHeight) style:UITableViewStylePlain];
+        _tableview = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, kWidth, kHeight) style:UITableViewStylePlain];
         _tableview.sectionHeaderHeight = 0;
         _tableview.backgroundColor = WhiteColor;
         _tableview.delegate = self;

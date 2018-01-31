@@ -56,4 +56,7 @@
 //切圆角
 +(UIView *)ViewcornerRadius:(float)radius andColor:(UIColor *)color andWidth:(float)width :(UIView *)view;
 
++(void)showWithString:(NSString *)string;
++(void)showErrorWithStatus:(NSString *)string;
++(void)showSuccessWithStatus:(NSString *)string;
 @end
