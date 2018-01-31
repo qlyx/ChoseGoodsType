@@ -15,7 +15,6 @@
     [_alert initData:model];
     [_alert showView];
 
-### 页面布局使用的是SD,提示HUD用的SVProgressHUD
     -(void)initData:(GoodsModel *)model
     {
 
@@ -27,4 +26,9 @@
     //此方法必须在_dataSource赋值后方可调用
     [self reloadGoodsInfo];
     [self.tableview reloadData];
+    }
+### 页面布局使用的是SD,提示HUD用的SVProgressHUD,如果使用的是其他HUD,修改JXUIKit下列代码即可
+    +(void)showWithString:(NSString *)string
+    {
+        [SVProgressHUD showWithString:string];
     }
