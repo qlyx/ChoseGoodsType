@@ -26,8 +26,6 @@
         lab.textColor = [UIColor blackColor];
         lab.font = [UIFont systemFontOfSize:14];
         [self addSubview:lab];
-        
-        BOOL  isLineReturn = NO;
         float upX = 10;
         float upY = 40;
         for (int i = 0; i<arr.count; i++) {
@@ -36,8 +34,6 @@
             //NSLog(@"%f",size.height);
             //20是左右边距各10，size.width+30是按钮宽度，间隔为10，通过计算x的位置判断是否换行显示按钮
             if ( upX > (self.frame.size.width-20 -size.width-40)) {
-                
-                isLineReturn = YES;
                 upX = 10;
                 upY += 30;
             }

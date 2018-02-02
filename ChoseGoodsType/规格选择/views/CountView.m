@@ -29,6 +29,14 @@
         [self addSubview:countTextField];
         countTextField.sd_layout.rightSpaceToView(addButton, kSize(5)).widthIs(kSize(60)).heightIs(kSize(30)).centerYEqualToView(self);
         
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kWidth, 40)];
+        view.backgroundColor = WhiteColor;
+        
+       _textFieldDownButton= [JXUIKit buttonWithBackgroundColor:WhiteColor imageForNormal:@"jiantou_down" imageForSelete:nil];
+        _textFieldDownButton.frame = CGRectMake(kWidth-50, 0, 50, 40);
+        [view addSubview:_textFieldDownButton];
+        countTextField.inputAccessoryView = view;
+        
         reduceButton= [JXUIKit buttonWithBackgroundColor:WhiteColor titleColorForNormal:[UIColor blackColor] titleForNormal:@"-" titleForSelete:nil titleColorForSelete:nil fontSize:20 font:nil];
         [JXUIKit ViewcornerRadius:4 andColor:KLightGrayLinecol andWidth:1 :reduceButton];
         [self addSubview:reduceButton];
@@ -37,6 +45,7 @@
     }
     return self;
 }
+
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

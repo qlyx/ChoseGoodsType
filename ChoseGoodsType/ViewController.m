@@ -42,7 +42,7 @@
     GoodsTypeModel *type2 = [[GoodsTypeModel alloc] init];
     type2.selectIndex = -1;
     type2.typeName = @"颜色";
-    type2.typeArray = @[@"黑色",@"白色"];
+    type2.typeArray = @[@"黑色",@"白色",@"黑色",@"白色",@"黑色",@"白色",@"黑色"];
     
     GoodsTypeModel *type3 = [[GoodsTypeModel alloc] init];
     type3.selectIndex = -1;
@@ -57,7 +57,7 @@
         SizeAttributeModel *type = [[SizeAttributeModel alloc] init];
         type.price = @"153";
         type.originalPrice = @"158";
-        type.stock = [NSString stringWithFormat:@"%d",arc4random()%20];
+        type.stock = [NSString stringWithFormat:@"%d",i];
         type.goodsNo = model.goodsNo;
         type.value = valueArr[i];
         type.imageId =[NSString stringWithFormat:@"%d.jpg",arc4random()%4];

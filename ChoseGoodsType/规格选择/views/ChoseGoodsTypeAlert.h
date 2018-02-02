@@ -10,7 +10,7 @@
 
 #import "SizeAttributeModel.h"
 @class GoodsModel;
-@interface ChoseGoodsTypeAlert : UIView<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,UIGestureRecognizerDelegate>
+@interface ChoseGoodsTypeAlert : UIView<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>
 @property (nonatomic, strong)UITableView *tableview;
 @property (nonatomic, strong)NSMutableArray *dataSource;
 @property (nonatomic, strong)GoodsModel *model;

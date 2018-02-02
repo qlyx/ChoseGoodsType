@@ -38,10 +38,6 @@
         bgView.backgroundColor = [UIColor whiteColor];
         bgView.userInteractionEnabled = YES;
         [self addSubview:bgView];
-        //手势是可以点击空白地方让键盘下去或者弹窗消失的
-        UITapGestureRecognizer *tap1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap)];
-        tap1.delegate = self;
-        [bgView addGestureRecognizer:tap1];
         
         //商品信息
         goodsInfo = [[GoodsInfoView alloc] initWithFrame:CGRectMake(0, 0, kWidth, kSize(110))];
@@ -62,7 +58,7 @@
 #pragma mark - methods
 -(void)hideView
 {
-    [self tap];
+    [self tfresignFirstResponder];
     [UIView animateWithDuration:0.25 animations:^
      {
          bgView.centerY = bgView.centerY+CGRectGetHeight(bgView.frame);
@@ -94,21 +90,6 @@
     [self reloadGoodsInfo];
     [self.tableview reloadData];
 }
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
-{
-    NSLog(@"%@",[gestureRecognizer class]);
-    if ([NSStringFromClass([gestureRecognizer class]) isEqualToString:@"UITapGestureRecognizer"]) {
-        // 输出点击的view的类名
-        NSLog(@"ismain:   %@", NSStringFromClass([touch.view class]));
-        //判断当前点击手势是什么情况下发生的-编辑状态就失去焦点
-        if (countView.countTextField.isFirstResponder) {
-            return YES;
-        }else
-            return NO;
-    }else{
-        return YES;
-    }
-}
 -(void)reloadGoodsInfo
 {
     for (GoodsTypeModel *model in _dataSource) {
@@ -126,6 +107,11 @@
             sizeModel = model;
             if ([countView.countTextField.text intValue]>[sizeModel.stock intValue]) {
                 countView.countTextField.text = [NSString stringWithFormat:@"%d",[sizeModel.stock intValue]];
+            }else if ([countView.countTextField.text intValue]<[sizeModel.stock intValue])
+            {
+                if ([countView.countTextField.text intValue] == 0) {
+                    countView.countTextField.text = @"1";
+                }
             }
             goodsInfo.promatLabel.text = [NSString stringWithFormat:@"已选%@",model.value];
             [goodsInfo resetData:model];
@@ -227,7 +213,7 @@
         }
     }
 }
--(void)tap
+-(void)tfresignFirstResponder
 {
     self.tableview.contentOffset = CGPointMake(0, 0);
     [countView.countTextField resignFirstResponder];
@@ -271,6 +257,7 @@
         countView.countTextField.delegate = self;
         [countView.addButton addTarget:self action:@selector(add) forControlEvents:UIControlEventTouchUpInside];
         [countView.reduceButton addTarget:self action:@selector(reduce) forControlEvents:UIControlEventTouchUpInside];
+        [countView.textFieldDownButton addTarget:self action:@selector(tfresignFirstResponder) forControlEvents:UIControlEventTouchUpInside];
         _tableview.tableFooterView = countView;
         
         

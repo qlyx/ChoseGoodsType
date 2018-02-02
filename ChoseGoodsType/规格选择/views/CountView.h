@@ -13,5 +13,5 @@
 @property(nonatomic, strong)UIButton *reduceButton;//减
 @property(nonatomic, strong)UITextField *countTextField;//输入框
 @property(nonatomic, strong)UIButton *addButton;//加
-
+@property(nonatomic, strong)UIButton *textFieldDownButton;
 @end

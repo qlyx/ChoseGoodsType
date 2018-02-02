@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ChoseGoodsType/&#x89c4;&#x683c;&#x9009;&#x62e9;/views/GoodsInfoView.m"
-            timestampString = "539085302.908757"
+            timestampString = "539257637.384833"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
             landmarkName = "-resetData:"
             landmarkType = "7">
          </BreakpointContent>
