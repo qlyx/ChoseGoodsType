@@ -11,7 +11,7 @@
 #import "TypeView.h"
 #define ItemHeight kSize(32)
 @interface ChoosTypeTableViewCell : UITableViewCell
-@property(nonatomic, strong)TypeView *typeView;
 @property(nonatomic, strong)GoodsTypeModel *model;
+@property (nonatomic, copy) void (^selectButton)(int selectIndex);
 -(float)setData:(GoodsTypeModel *)model;
 @end

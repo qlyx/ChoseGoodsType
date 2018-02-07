@@ -227,17 +227,13 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *ID = @"ChoosTypeTableViewCell";
-    ChoosTypeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+    ChoosTypeTableViewCell *cell = [[ChoosTypeTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:ID];
     
-    if (!cell) {
-        cell = [[ChoosTypeTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:ID];
-    }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     GoodsTypeModel *model = _dataSource[indexPath.row];
     tableView.rowHeight=[cell setData:model];
     MJWeakSelf
-    cell.typeView.selectButton = ^(int selectIndex) {
-        model.selectIndex = selectIndex;
+    cell.selectButton = ^(int selectIndex) {
         [weakSelf reloadGoodsInfo];
     };
     return cell;
@@ -263,6 +259,10 @@
         
     }
     return _tableview;
+}
+-(void)dealloc
+{
+    NSLog(@"dddddd");
 }
 /*
 // Only override drawRect: if you perform custom drawing.

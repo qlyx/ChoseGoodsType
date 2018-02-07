@@ -14,10 +14,13 @@
     int selectIndex;
     NSArray *typeArray;
 }
--(instancetype)initWithFrame:(CGRect)frame andDatasource:(NSArray *)arr typeName:(NSString *)typeName selecteIndex:(int)index
+
+-(void)initWithDatasource:(NSArray *)arr typeName:(NSString *)typeName selecteIndex:(int)index
 {
-    self = [super initWithFrame:frame];
-    if (self) {
+    while ([self.subviews lastObject] != nil)
+    {
+        [[self.subviews lastObject] removeFromSuperview];
+    }
         selectIndex = index;
         typeArray = arr;
         
@@ -57,9 +60,7 @@
         [self addSubview:line];
         
         self.height = upY+11;
-        
-    }
-    return self;
+    
 }
 -(void)touchbtn:(UIButton *)btn
 {

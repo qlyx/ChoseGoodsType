@@ -11,5 +11,5 @@
 @interface TypeView : UIView
 @property(nonatomic, assign)float height;
 @property (nonatomic, copy) void (^selectButton)(int selectIndex);
--(instancetype)initWithFrame:(CGRect)frame andDatasource:(NSArray *)arr typeName:(NSString *)typeName selecteIndex:(int)index;
+-(void)initWithDatasource:(NSArray *)arr typeName:(NSString *)typeName selecteIndex:(int)index;
 @end
