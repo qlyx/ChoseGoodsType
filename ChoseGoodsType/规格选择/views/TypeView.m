@@ -29,16 +29,15 @@
         float upX = 10;
         float upY = 40;
         for (int i = 0; i<arr.count; i++) {
-            NSDictionary *dic = [NSDictionary dictionaryWithObject:[UIFont boldSystemFontOfSize:14] forKey:NSFontAttributeName];
-            CGSize size = [arr[i] sizeWithAttributes:dic];
+            UIButton *btn= [JXUIKit buttonWithBackgroundColor:KLightGrayLinecol titleColorForNormal:[UIColor blackColor] titleForNormal:[arr objectAtIndex:i] titleForSelete:[arr objectAtIndex:i] titleColorForSelete:WhiteColor fontSize:13 font:nil];
+            NSDictionary *dic = [NSDictionary dictionaryWithObject:btn.titleLabel.font forKey:NSFontAttributeName];
+            CGSize size = [@"ddd" sizeWithAttributes:dic];
             //NSLog(@"%f",size.height);
             //20是左右边距各10，size.width+30是按钮宽度，间隔为10，通过计算x的位置判断是否换行显示按钮
             if ( upX > (self.frame.size.width-20 -size.width-40)) {
                 upX = 10;
                 upY += 30;
             }
-            
-            UIButton *btn= [JXUIKit buttonWithBackgroundColor:KLightGrayLinecol titleColorForNormal:[UIColor blackColor] titleForNormal:[arr objectAtIndex:i] titleForSelete:[arr objectAtIndex:i] titleColorForSelete:WhiteColor fontSize:13 font:nil];
             btn.frame = CGRectMake(upX, upY, size.width+30,24);
             [JXUIKit ViewcornerRadius:12 andColor:WhiteColor andWidth:0 :btn];
             [self addSubview:btn];

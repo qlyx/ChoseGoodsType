@@ -202,13 +202,13 @@
     if (sizeModel) {
         if (count >[sizeModel.stock intValue]) {
             [JXUIKit showWithString:@"数量超出库存"];
-            countView.countTextField.text = [NSString stringWithFormat:@"%d",[sizeModel.stock intValue]];
+            countView.countTextField.text = sizeModel.stock;
         }
     }else
     {
         if (count > [_model.totalStock intValue]) {
             [JXUIKit showWithString:@"数量超出库存"];
-            countView.countTextField.text = [NSString stringWithFormat:@"%d",[_model.totalStock intValue]];
+            countView.countTextField.text = _model.totalStock;
             
         }
     }
