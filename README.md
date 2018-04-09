@@ -35,6 +35,9 @@ swift版：https://github.com/qlyx/swiftChooseGoodsType
         [SVProgressHUD showWithString:string];
     }
 如果觉得对您有帮助请随意打赏一下吧^ _ ^，您的支持是我的无限动力，谢谢
+
 ![](https://github.com/qlyx/ChoseGoodsType/blob/master/erweima.png)
+
 谢谢打赏，使用时如有问题可扫下方二维码加我哦
+
 ![一起交流，一起进步](https://github.com/qlyx/ChoseGoodsType/blob/master/jiawo.jpg)
