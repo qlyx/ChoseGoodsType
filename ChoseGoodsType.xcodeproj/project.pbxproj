@@ -35,7 +35,6 @@
 		7B8731B9201F059C008979E5 /* GoodsPriceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B8731B8201F059C008979E5 /* GoodsPriceModel.m */; };
 		7B8731BC201F05C5008979E5 /* SizeAttributeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B8731BA201F05C5008979E5 /* SizeAttributeModel.m */; };
 		7B8731BF201F12BB008979E5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B8731BE201F12BA008979E5 /* LaunchScreen.storyboard */; };
-		7B8731C4201F1A48008979E5 /* TypeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B8731C3201F1A48008979E5 /* TypeView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,8 +109,6 @@
 		7B8731BB201F05C5008979E5 /* SizeAttributeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SizeAttributeModel.h; sourceTree = "<group>"; };
 		7B8731BD201F0666008979E5 /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 		7B8731BE201F12BA008979E5 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		7B8731C2201F1A48008979E5 /* TypeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TypeView.h; sourceTree = "<group>"; };
-		7B8731C3201F1A48008979E5 /* TypeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TypeView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -233,8 +230,6 @@
 				7B873121201F00EA008979E5 /* ChoseGoodsTypeAlert.m */,
 				7B87311E201F00EA008979E5 /* ChoosTypeTableViewCell.h */,
 				7B87311F201F00EA008979E5 /* ChoosTypeTableViewCell.m */,
-				7B8731C2201F1A48008979E5 /* TypeView.h */,
-				7B8731C3201F1A48008979E5 /* TypeView.m */,
 				7B873122201F00EA008979E5 /* CountView.h */,
 				7B873123201F00EA008979E5 /* CountView.m */,
 				7B2D0E322020243C00C4C26D /* GoodsInfoView.h */,
@@ -433,7 +428,6 @@
 				7B8731AD201F0419008979E5 /* UITableView+SDAutoTableViewCellHeight.m in Sources */,
 				7B8731AE201F0419008979E5 /* UIView+SDAutoLayout.m in Sources */,
 				7B8731AF201F0419008979E5 /* SVIndefiniteAnimatedView.m in Sources */,
-				7B8731C4201F1A48008979E5 /* TypeView.m in Sources */,
 				7B8730E9201EFEE4008979E5 /* AppDelegate.m in Sources */,
 				7B8731BC201F05C5008979E5 /* SizeAttributeModel.m in Sources */,
 				7B873129201F00EA008979E5 /* CountView.m in Sources */,

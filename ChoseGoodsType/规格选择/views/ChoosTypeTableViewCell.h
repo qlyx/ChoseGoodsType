@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "GoodsTypeModel.h"
-#import "TypeView.h"
 #define ItemHeight kSize(32)
 @interface ChoosTypeTableViewCell : UITableViewCell
 @property(nonatomic, strong)GoodsTypeModel *model;

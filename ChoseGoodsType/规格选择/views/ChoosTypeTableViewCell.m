@@ -11,8 +11,9 @@
 #import "Header.h"
 @interface ChoosTypeTableViewCell()
 {
+    //类型名
     UILabel *typeNameLabel;
-    UIView *typeView;
+    UIView *typeView;//装载所有属性button的视图
 }
 @end
 @implementation ChoosTypeTableViewCell
@@ -36,10 +37,11 @@
 {
     _model = model;
     typeNameLabel.text = model.typeName;
-    return [self initTypeView];
+    return [self initTypeView];//每次刷新重绘
 }
 -(float)initTypeView
 {
+    //循环删除typeView所有子视图，防止cell重用产生错乱
     while ([typeView.subviews lastObject] != nil)
     {
         [[typeView.subviews lastObject] removeFromSuperview];
