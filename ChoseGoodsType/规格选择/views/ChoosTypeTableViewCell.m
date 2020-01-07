@@ -50,6 +50,8 @@
     float upY = 0;
     for (int i = 0; i<_model.typeArray.count; i++) {
         UIButton *btn= [JXUIKit buttonWithBackgroundColor:KLightGrayLinecol titleColorForNormal:[UIColor blackColor] titleForNormal:[_model.typeArray objectAtIndex:i] titleForSelete:[_model.typeArray objectAtIndex:i] titleColorForSelete:WhiteColor fontSize:13 font:nil];
+        [btn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
+        
         NSDictionary *dic = [NSDictionary dictionaryWithObject:btn.titleLabel.font forKey:NSFontAttributeName];
         CGSize size = [_model.typeArray[i] sizeWithAttributes:dic];
         //NSLog(@"%f",size.height);
@@ -69,6 +71,7 @@
             btn.selected = YES;
             btn.backgroundColor = KBtncol;
         }
+        btn.enabled = [[_model.enableArray objectAtIndex:i] boolValue];
     }
 
     upY +=30;
@@ -90,9 +93,7 @@
         //取消选中
         _model.selectIndex = -1;
     }
-    if (self.selectButton) {
-        self.selectButton(_model.selectIndex);
-    }
+    
     for (int i = 0; i<_model.typeArray.count; i++) {
         UIButton *button =(UIButton *)[self viewWithTag:100+i];
         button.selected = NO;
@@ -102,6 +103,9 @@
             button.selected = YES;
             button.backgroundColor = KBtncol;
         }
+    }
+    if (self.selectButton) {
+        self.selectButton(_model.selectIndex);
     }
 }
 - (void)awakeFromNib {

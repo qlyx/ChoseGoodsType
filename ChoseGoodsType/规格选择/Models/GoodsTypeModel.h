@@ -11,5 +11,6 @@
 @interface GoodsTypeModel : NSObject
 @property(nonatomic, assign)int selectIndex;
 @property(nonatomic, copy)NSArray *typeArray;
+@property(nonatomic, copy)NSArray *enableArray;
 @property(nonatomic, copy)NSString *typeName;
 @end

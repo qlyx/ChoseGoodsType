@@ -61,12 +61,12 @@
     [self tfresignFirstResponder];
     [UIView animateWithDuration:0.25 animations:^
      {
-         bgView.centerY = bgView.centerY+CGRectGetHeight(bgView.frame);
-         
-     } completion:^(BOOL fin){
-         [self removeFromSuperview];
-         
-     }];
+        bgView.centerY = bgView.centerY+CGRectGetHeight(bgView.frame);
+        
+    } completion:^(BOOL fin){
+        [self removeFromSuperview];
+        
+    }];
     
 }
 //
@@ -75,9 +75,9 @@
     self.alpha = 1;
     [UIView animateWithDuration:0.25 animations:^
      {
-         bgView.centerY = bgView.centerY-CGRectGetHeight(bgView.frame);
-         
-     } completion:^(BOOL fin){}];
+        bgView.centerY = bgView.centerY-CGRectGetHeight(bgView.frame);
+        
+    } completion:^(BOOL fin){}];
 }
 -(void)initData:(GoodsModel *)model
 {
@@ -98,7 +98,20 @@
             break;
         }
     }
+    //每次选择规格后将置灰情况恢复
+    for (int i = 0; i<_model.itemsList.count; i++) {
+        GoodsTypeModel *type = _model.itemsList[i];
+        NSMutableArray *arr = [[NSMutableArray alloc] init];
+        for (int j = 0; j<type.typeArray.count; j++) {
+            [arr addObject:@"1"];
+        }
+        type.enableArray = arr;
+        [self.tableview reloadData];
+    }
     NSString *str = [self getSizeStr];
+    //根据已选规格，查找库存为0的规格组合，将按钮置灰，如不需要可注释掉
+    [self setEnableSize:str];
+    
     NSLog(@"用户选择的属性是：%@",str);
     sizeModel = nil;
     //遍历属性组合列表找出符合的属性，修改价格和库存等信息
@@ -120,6 +133,51 @@
     }
     //没找到匹配的，显示默认数据
     [goodsInfo initData:_model];
+}
+-(void)setEnableSize:(NSString *)choseSizeStr
+{
+    //用、分割成已选规格数组
+    NSArray *choseAttArr = [choseSizeStr componentsSeparatedByString:@"、"];
+    //遍历所有规格组合，与已选规格进行匹配
+    for (SizeAttributeModel *model in _model.sizeAttribute) {
+        NSArray *attArr = [model.value componentsSeparatedByString:@"、"];
+        //记录各个规格匹配情况
+        NSMutableArray *containsArr = [[NSMutableArray alloc] init];
+        //统计规格匹配个数
+        int count=0;
+        for (NSString *att in attArr) {
+            if ([choseAttArr containsObject: att]) {
+            //规格一致设为1，不一致设为0，比如已选规格XL、黑色，与XL、黑色、2016的匹配情况就是@[@"1",@"1",@"0"]，后边通过遍历找到@“0”，就能够确定哪个规格没选
+                [containsArr addObject:@"1"];
+                count++;
+            }else
+                [containsArr addObject:@"0"];
+        }
+    //当规格选项还差一个的时候才能确定完整组合对应的库存，进行置灰，比如3个规格，已选2个，当count规格匹配数量为2时，说明当前组合就是已选的2个规格跟未选的那个规格的组合，如果该组合库存为零，就可以置灰
+        if (count == attArr.count-1&&[model.stock isEqualToString:@"0"]) {
+            //遍历当前规格匹配情况数组
+            for (int i = 0; i<containsArr.count; i++) {
+                //如果匹配情况为0，则表示这个规格没被选中，可根据这个规格所在顺序，从这个规格的所有情况中找到它，如@[@"1",@"1",@"0"]，标识第三个规格没选，并且其中“2016”这个选项库存为0
+                if ([[containsArr objectAtIndex:i] isEqualToString:@"0"]) {
+                    GoodsTypeModel *type = _model.itemsList[i];
+                    //记录第三个规格所有选项是否置灰情况
+                    NSMutableArray *arr = [[NSMutableArray alloc] init];
+                    //遍历未选规格的所有选项
+                    for (int j = 0; j<type.typeArray.count; j++) {
+                        //找到“2016”这个选项，禁用置灰z设为0，不匹配的不禁用设为1
+                        if ([[attArr objectAtIndex:i] isEqualToString:[type.typeArray objectAtIndex:j]]) {
+                            [arr addObject:@"0"];
+                        }else
+                            [arr addObject:@"1"];
+                    }
+                    //重置未选规格的置灰情况数组
+                    type.enableArray = arr;
+                    //刷新规格列表
+                    [self.tableview reloadData];
+                }
+            }
+        }
+    }
 }
 //点击确定
 -(void)sure
@@ -179,15 +237,15 @@
             
         }
     }
-
+    
 }
 -(void)reduce
 {
     int count =[countView.countTextField.text intValue];
     if (count > 1) {
-
+        
         countView.countTextField.text = [NSString stringWithFormat:@"%d",count-1];
-       
+        
     }
 }
 #pragma mark-tf
@@ -221,7 +279,7 @@
 #pragma mark - tavdelegete
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-   
+    
     return _dataSource.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -265,11 +323,11 @@
     NSLog(@"dddddd");
 }
 /*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
+ // Only override drawRect: if you perform custom drawing.
+ // An empty implementation adversely affects performance during animation.
+ - (void)drawRect:(CGRect)rect {
+ // Drawing code
+ }
+ */
 
 @end
