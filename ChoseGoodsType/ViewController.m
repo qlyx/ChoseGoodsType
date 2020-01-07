@@ -60,7 +60,10 @@
         SizeAttributeModel *type = [[SizeAttributeModel alloc] init];
         type.price = @"153";
         type.originalPrice = @"158";
-        type.stock = [NSString stringWithFormat:@"%d",i];
+        if (i == 0) {
+            type.stock = @"0";
+        }else
+            type.stock = [NSString stringWithFormat:@"%d",i-1];
         type.goodsNo = model.goodsNo;
         type.value = valueArr[i];
         type.imageId =[NSString stringWithFormat:@"%d.jpg",arc4random()%4];

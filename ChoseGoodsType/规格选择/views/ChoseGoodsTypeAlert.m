@@ -161,14 +161,13 @@
                 if ([[containsArr objectAtIndex:i] isEqualToString:@"0"]) {
                     GoodsTypeModel *type = _model.itemsList[i];
                     //记录第三个规格所有选项是否置灰情况
-                    NSMutableArray *arr = [[NSMutableArray alloc] init];
+                    NSMutableArray *arr = [[NSMutableArray alloc] initWithArray:type.enableArray];
                     //遍历未选规格的所有选项
                     for (int j = 0; j<type.typeArray.count; j++) {
-                        //找到“2016”这个选项，禁用置灰z设为0，不匹配的不禁用设为1
+                        //找到“2016”这个选项，禁用置灰设为0，不匹配的不做更改
                         if ([[attArr objectAtIndex:i] isEqualToString:[type.typeArray objectAtIndex:j]]) {
-                            [arr addObject:@"0"];
-                        }else
-                            [arr addObject:@"1"];
+                            [arr replaceObjectAtIndex:j withObject:@"0"];
+                        }
                     }
                     //重置未选规格的置灰情况数组
                     type.enableArray = arr;
