@@ -38,19 +38,19 @@
     type.selectIndex = -1;
     type.typeName = @"尺码";
     type.typeArray = @[@"XL",@"XXL"];
-    type.enableArray = @[@"1",@"1"];
+  
     
     GoodsTypeModel *type2 = [[GoodsTypeModel alloc] init];
     type2.selectIndex = -1;
     type2.typeName = @"颜色";
     type2.typeArray = @[@"黑色",@"白色"];
-    type.enableArray = @[@"1",@"0"];
+    
     
     GoodsTypeModel *type3 = [[GoodsTypeModel alloc] init];
     type3.selectIndex = -1;
     type3.typeName = @"日期";
     type3.typeArray = @[@"2016",@"2017",@"2018"];
-    type.enableArray = @[@"1",@"1",@"0"];
+    
     model.itemsList = @[type,type2,type3];
     
     //属性组合数组-有时候不同的属性组合价格库存都会有差异，选择完之后要对应修改商品的价格、库存图片等信息，可能是获得商品信息时将属性数组一并返回，也可能属性选择后再请求服务器获得属性组合对应的商品信息，根据自己的实际情况调整
